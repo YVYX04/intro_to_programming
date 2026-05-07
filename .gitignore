@@ -1,0 +1,25 @@
+# ––––––––––
+# structure
+# ––––––––––
+# ignore all .DS_Store files
+.DS_Store
+
+# ––––––––––
+# python
+# ––––––––––
+# ignore all .pyc files
+*.pyc
+
+# pycache
+__pycache__/
+
+# ––––––––––
+# environment
+# ––––––––––
+# ignore virtual environment folders
+.venv/
+venv/
+env/
+.python-version
+
+
