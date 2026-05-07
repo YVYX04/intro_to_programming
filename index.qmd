@@ -1,0 +1,37 @@
+---
+title: "Introduction to Programming"
+page-layout: full
+toc: false
+---
+
+::: {.course-hero}
+# Introduction to Programming
+
+::: {.subtitle}
+University of St. Gallen — Spring 2026
+:::
+
+::: {.meta}
+Yvan Richard · Lectures & Summaries
+:::
+:::
+
+## Lecture Notes
+
+Each week's summary covers the key concepts from that week's lecture.
+
+<div class="lecture-grid">
+
+<a class="lecture-card" href="lectures/week_01/summary_01.html">
+<div class="week-label">Week 01</div>
+<div class="week-title">Getting Started</div>
+<div class="week-topics">The terminal · IDEs · Python &amp; environments · uv</div>
+</a>
+
+</div>
+
+---
+
+::: {style="font-size: 0.8rem; color: #a0aec0; margin-top: 2rem;"}
+Course material by Yvan Richard, based on lectures by Dr. Franziska Bender and Dr. Aurélien Sallin.
+:::

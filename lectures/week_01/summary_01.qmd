@@ -3,17 +3,6 @@ title: "Getting Started"
 author:
   - "Yvan Richard"
 date: today
-format:
-    html:
-        toc: true
-        toc-depth: 3
-        code-fold: false
-        theme: cosmo
-        embed-resources: true
-execute:
-    echo: true
-    error: true
-    freeze: false
 jupyter: intro-prog
 ---
 

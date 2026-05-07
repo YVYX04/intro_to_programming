@@ -1,0 +1,58 @@
+name: Render and Publish
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Quarto
+        uses: quarto-dev/quarto-actions/setup@v2
+        with:
+          version: "1.8.27"
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v5
+        with:
+          python-version: "3.14"
+
+      - name: Install Python dependencies
+        run: uv sync
+
+      - name: Register Jupyter kernel
+        run: |
+          uv run python -m ipykernel install \
+            --user \
+            --name intro-prog \
+            --display-name "intro-prog"
+
+      - name: Restore Quarto freeze cache
+        uses: actions/cache@v4
+        with:
+          path: _freeze
+          key: quarto-freeze-${{ hashFiles('lectures/**/*.qmd') }}
+          restore-keys: |
+            quarto-freeze-
+
+      - name: Render Quarto project
+        run: uv run quarto render
+
+      - name: Commit and push docs/
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add docs/ _freeze/
+          git diff --cached --quiet || git commit -m "chore: render site [skip ci]"
+          git push

@@ -22,4 +22,12 @@ venv/
 env/
 .python-version
 
+# ––––––––––
+# quarto
+# ––––––––––
+.quarto/
+lectures/**/*.html
 
+
+/.quarto/
+**/*.quarto_ipynb
