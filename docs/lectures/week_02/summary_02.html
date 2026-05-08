@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Yvan Richard">
-<meta name="dcterms.date" content="2026-05-09">
+<meta name="dcterms.date" content="2026-05-08">
 
 <title>Introduction to Git</title>
 <style>
@@ -21,41 +21,6 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
-}
-/* CSS for syntax highlighting */
-html { -webkit-text-size-adjust: 100%; }
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -77,7 +42,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../../site_libs/quarto-html/quarto-syntax-highlighting-8b4baf804e461d9b72633f0de59a0cac.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-b1010f415b9c85e6efbf73f098e0bb0a.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-f9911261564a338724a029825403d726.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -149,18 +114,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
    
   <ul>
   <li><a href="#foreword" id="toc-foreword" class="nav-link active" data-scroll-target="#foreword">Foreword</a></li>
-  <li><a href="#git" id="toc-git" class="nav-link" data-scroll-target="#git">1. Git</a>
-  <ul class="collapse">
-  <li><a href="#the-substance-of-version-control" id="toc-the-substance-of-version-control" class="nav-link" data-scroll-target="#the-substance-of-version-control">1.1. The Substance of Version Control</a></li>
-  <li><a href="#intuition-for-git" id="toc-intuition-for-git" class="nav-link" data-scroll-target="#intuition-for-git">1.2. Intuition for Git</a></li>
-  <li><a href="#branching-and-merging-a-practical-example" id="toc-branching-and-merging-a-practical-example" class="nav-link" data-scroll-target="#branching-and-merging-a-practical-example">1.3. Branching and Merging: A Practical Example</a></li>
-  </ul></li>
-  <li><a href="#self-study" id="toc-self-study" class="nav-link" data-scroll-target="#self-study">2. Self-Study</a>
-  <ul class="collapse">
-  <li><a href="#additional-git-commands" id="toc-additional-git-commands" class="nav-link" data-scroll-target="#additional-git-commands">2.1. Additional Git Commands</a></li>
-  <li><a href="#the-anatomy-of-a-git-command" id="toc-the-anatomy-of-a-git-command" class="nav-link" data-scroll-target="#the-anatomy-of-a-git-command">2.2. The Anatomy of a Git Command</a></li>
-  <li><a href="#detached-head-state" id="toc-detached-head-state" class="nav-link" data-scroll-target="#detached-head-state">2.3. Detached HEAD State</a></li>
-  </ul></li>
   </ul>
 </nav>
     </div>
@@ -186,7 +139,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">May 9, 2026</p>
+      <p class="date">May 8, 2026</p>
     </div>
   </div>
   
@@ -200,255 +153,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <section id="foreword" class="level2">
 <h2 class="anchored" data-anchor-id="foreword">Foreword</h2>
-<p>The purpose of this second lecture is to introduce the concept of version control and the tools that are commonly used for it, namely Git and GitHub. The lecture, originally crafted by Dr.&nbsp;Franziska Bender, and Dr.&nbsp;Aurélien Sallin, covers the following topics:</p>
-<ul>
-<li>what is version control</li>
-<li>how to use Git for version control</li>
-<li>how to use GitHub for collaboration</li>
-</ul>
-</section>
-<section id="git" class="level2">
-<h2 class="anchored" data-anchor-id="git">1. Git</h2>
-<section id="the-substance-of-version-control" class="level3">
-<h3 class="anchored" data-anchor-id="the-substance-of-version-control">1.1. The Substance of Version Control</h3>
-<p>Whenever we work on projects, we often make changes to our files. Sometimes, we want to keep track of these changes, revert to previous versions, or collaborate with others without overwriting each other’s work. This is where version control systems come in! Git is a popular version control system (VCS) that allows us to manage changes to our files and collaborate with others effectively. Git is probably the most widely used VCS in the world, and it is an essential tool for any programmer or data scientist.</p>
-</section>
-<section id="intuition-for-git" class="level3">
-<h3 class="anchored" data-anchor-id="intuition-for-git">1.2. Intuition for Git</h3>
-<p>A project in Git is called a <strong>repository</strong> (or <em>repo</em> if you want to show that you know the lingo). When we start a new project, we can initialize a Git repository in our project directory. This allows us to track changes to our files and manage our project history.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># initialize a new Git repository</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> init</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Once we have a Git repository, we have to indicate which files we want to track. We can do this by adding files to the staging area using the <code>git add</code> command.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># add a file to the staging area</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> add main.py</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Once we have staged our changes, we can commit them to the repository using the <code>git commit</code> command. A commit is like a snapshot of our project at a specific point in time. It allows us to keep track of our changes and revert to previous versions if needed. Importantly, each commit has a unique identifier (called a hash) that allows us to reference it later and is always attributed to an author and a timestamp.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># commit our changes with a message</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"Add main.py with initial code"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>I recommend using meaningful commit messages that describe the changes you have made. This will make it easier for you and others to understand the history of your project and the purpose of each commit. Here is the structure so far:</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="../../assets/images/git.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:50.0%"></p>
-</figure>
-</div>
-<p>At any point in time, we can view our commit history using the <code>git log</code> command. This will show us a list of all the commits in our repository, along with their messages, authors, and timestamps. Here is an example from the current project I am working on:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">commit</span> b65ae016204690b81ffc99fae1ecdc4f55cb6dd8</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="ex">Merge:</span> 8f5b21d b258f76</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="ex">Author:</span> Yvan Richard <span class="op">&lt;</span>yvan.richard2004@gmail.com<span class="op">&gt;</span></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="ex">Date:</span>   Fri May 8 03:09:19 2026 +0200</span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    <span class="ex">resolve</span> quarto render conflicts</span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="ex">commit</span> 8f5b21de47a3979f8f3411ad27ba8138884c9b70</span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="ex">Author:</span> Yvan Richard <span class="op">&lt;</span>yvan.richard2004@gmail.com<span class="op">&gt;</span></span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="ex">Date:</span>   Fri May 8 03:04:45 2026 +0200</span>
-<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>    <span class="bu">hash</span> issue fix 1</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>We can also view the changes we have made to our files using the <code>git diff</code> command. This will show us a line-by-line comparison of our changes, highlighting what has been added, removed, or modified. I personally do not use this command very often. One that I use extremely frequently is <code>git status</code>, which shows us the current state of our repository, including which files are staged, unstaged, or untracked.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># check the status of our repository</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> status</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>and here is an example of the output (from this very project):</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">On</span> branch week_02</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="ex">Changes</span> not staged for commit:</span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="kw">(</span><span class="ex">use</span> <span class="st">"git add/rm &lt;file&gt;..."</span> to update what will be committed<span class="kw">)</span></span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  <span class="kw">(</span><span class="ex">use</span> <span class="st">"git restore &lt;file&gt;..."</span> to discard changes in working directory<span class="kw">)</span></span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>        <span class="ex">modified:</span>   lectures/week_02/summary_02.qmd</span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="ex">Untracked</span> files:</span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>  <span class="kw">(</span><span class="ex">use</span> <span class="st">"git add &lt;file&gt;..."</span> to include in what will be committed<span class="kw">)</span></span>
-<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>        <span class="ex">assets/images/git.png</span></span>
-<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a><span class="ex">no</span> changes added to commit <span class="er">(</span><span class="ex">use</span> <span class="st">"git add"</span> and/or <span class="st">"git commit -a"</span><span class="kw">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</section>
-<section id="branching-and-merging-a-practical-example" class="level3">
-<h3 class="anchored" data-anchor-id="branching-and-merging-a-practical-example">1.3. Branching and Merging: A Practical Example</h3>
-<blockquote class="blockquote">
-<p>This example is the result of my own work and is not part of the original lecture.</p>
-</blockquote>
-<p>Let us understand how a branch works in Git. Let us suppose that right now we only have <code>main</code> in our repository, which is the default branch that Git creates when we initialize a new repository. We have the following structure:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode txt code-with-copy"><code class="sourceCode default"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>o––––––main</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Now, I decide that I want to create a summary for the lecture of week 02 in <code>lectures/week_02/summary_02.qmd</code>. I want to work on this file without affecting the <code>main</code> branch, so I create a new branch called <code>week_02</code>:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># create a new branch called week_02 and switch to it</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> switch <span class="at">-c</span> week_02</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>and now we have the following structure (I use the <code>*</code> symbol to indicate where we are in the schema):</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode txt code-with-copy"><code class="sourceCode default"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>o––––––main, * week_02</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Now let us say that I have made some changes to <code>lectures/week_02/summary_02.qmd</code> and I want to commit those:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># add the changes to the staging area</span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> add lectures/week_02/summary_02.qmd</span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="co"># commit the changes with a message</span></span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"Add summary for week 02 lecture"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Now we have the following structure with the new commit on the <code>week_02</code> branch, where <code>o</code> represents a commit and <code>a3tf65i</code> is the hash of the new commit:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode txt code-with-copy"><code class="sourceCode default"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>o––––––main</span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a> \</span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  o (a3tf65i) ––––– * week_02</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Let us further suppose that I have made some more changes to <code>lectures/week_02/summary_02.qmd</code> and I want to commit those as well:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># add the changes to the staging area</span></span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> add lectures/week_02/summary_02.qmd </span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="co"># commit the changes with a message</span></span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"Add more content to week 02 summary"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Now we have the following structure with the new commit on the <code>week_02</code> branch:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode txt code-with-copy"><code class="sourceCode default"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>o––––––main</span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a> \</span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  o (a3tf65i) ––––– o (b4g5h6i) ––––– * week_02</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>But I realize that these changes are actually not good and I want to revert to the previous version of <code>lectures/week_02/summary_02.qmd</code> (i.e.&nbsp;the version at the previous commit). I can do this using the <code>git restore</code> command:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># restore the previous version of the file</span></span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> restore <span class="at">--source</span><span class="op">=</span>a3tf65i lectures/week_02/summary_02.qmd</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>In this case, <code>a3tf65i</code> is the hash of the commit that we want to restore. This copies the version of <code>lectures/week_02/summary_02.qmd</code> from commit <code>a3tf65i</code> into the working directory. It does not delete commit <code>b4g5h6i</code>; the history remains unchanged until we commit the restored file.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode txt code-with-copy"><code class="sourceCode default"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>o––––––main</span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a> \   . – + – + –(we take this version)– +.  </span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>  \ /                                     \</span>
-<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>   o (a3tf65i)––––– o (b4g5h6i)–––––––––––– * week_02</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>And I can commit this change to the <code>week_02</code> branch if I indeed think that the previous version is better than the current one:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># add the changes to the staging area</span></span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> add lectures/week_02/summary_02.qmd</span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="co"># commit the changes with a message</span></span>
-<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"Revert changes to week 02 summary"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Now we have the following structure with the new commit on the <code>week_02</code> branch:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="sourceCode txt code-with-copy"><code class="sourceCode default"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>o––––––main</span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a> \   . – + – + –(we take this version)– +.  </span>
-<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>  \ /                                     \</span>
-<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>   o (a3tf65i)––––– o (b4g5h6i)–––––––––––– o (c7h8i9j) –––– * week_02</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>So in this case, the content of <code>lectures/week_02/summary_02.qmd</code> is the same as in the commit <code>a3tf65i</code>, but we have a new commit <code>c7h8i9j</code> that indicates that we have reverted the changes. This is one of the powerful features of Git: it allows us to keep track of our changes and revert to previous versions if needed, without losing any history of our project.</p>
-<p>Now, let us further suppose that I want to style the scsss file that I am using for the website: <code>custom.scss</code>. I create a new branch called <code>style</code> to work on this:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># switch to main</span></span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> switch main</span>
-<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a><span class="co"># create a new branch called style and switch to it</span></span>
-<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> switch <span class="at">-c</span> style</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Now we have the following structure:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb19"><pre class="sourceCode txt code-with-copy"><code class="sourceCode default"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>o––––––main, * style</span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a> \   . – + – + –(we take this version)– +.  </span>
-<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>  \ /                                     \</span>
-<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>   o (a3tf65i)––––– o (b4g5h6i)–––––––––––– o (c7h8i9j) –––– week_02</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>I make some changes to <code>custom.scss</code> and commit those:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb20"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># add the changes to the staging area</span></span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> add custom.scss</span>
-<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a><span class="co"># commit the changes with a message</span></span>
-<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"Add custom styles to the website"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Now we have the following structure with the new commit on the <code>style</code> branch:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb21"><pre class="sourceCode txt code-with-copy"><code class="sourceCode default"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>  o (d8i9j0k) –––– * style</span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a> /</span>
-<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>o––––––main</span>
-<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a> \   . – + – + –(we take this version)– +.  </span>
-<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>  \ /                                     \</span>
-<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>   o (a3tf65i)––––– o (b4g5h6i)–––––––––––– o (c7h8i9j) –––– week_02</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Now that the style changes are ready, I want to merge the <code>style</code> branch into the <code>main</code> branch. This will allow me to have the new styles in the main branch and make them available for everyone who is using the main branch. I can do this using the <code>git merge</code> command:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb22"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># switch to the main branch</span></span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> switch main</span>
-<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a><span class="co"># merge the style branch into main</span></span>
-<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> merge style</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>and the structure will now look like this (no new commit is created because we are doing a fast-forward merge, which simply moves the <code>main</code> branch pointer to the same commit as <code>style</code>. This is possible because there are no new commits on <code>main</code> since we branched off <code>style</code>):</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb23"><pre class="sourceCode txt code-with-copy"><code class="sourceCode default"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>  o (d8i9j0k) –––– style, * main</span>
-<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a> /                 </span>
-<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>o          </span>
-<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a> \   . – + – + –(we take this version)– +.  </span>
-<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>  \ /                                     \</span>
-<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>   o (a3tf65i)––––– o (b4g5h6i)–––––––––––– o (c7h8i9j) –––– week_02</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>I can delete the <code>style</code> branch after merging it if I no longer need it:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb24"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># delete the style branch</span></span>
-<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> branch <span class="at">-d</span> style</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Now we have the following structure and we see that the two branches have different commits!</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb25"><pre class="sourceCode txt code-with-copy"><code class="sourceCode default"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>o ––––– o (d8i9j0k) –––– * main</span>
-<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a> \</span>
-<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>  o (a3tf65i) ––––– o (b4g5h6i) ––––– o (c7h8i9j) –––– week_02</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Now, I also want to merge the <code>week_02</code> branch back into <code>main</code>, because the week 02 summary is ready and should become part of the main version of the project. At this point, the situation is different from the previous merge. The <code>main</code> branch contains the style commit <code>d8i9j0k</code>, while the <code>week_02</code> branch contains the commits related to the lecture summary. Therefore, the two branches have <strong>diverged</strong>: each branch contains work that the other branch does not yet have.</p>
-<p>To merge <code>week_02</code> into <code>main</code>, I first make sure that I am on <code>main</code>:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb26"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># switch to the main branch</span></span>
-<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> switch main</span>
-<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a><span class="co"># merge the week_02 branch into main</span></span>
-<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> merge week_02</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>If there are no conflicts, Git will create a new merge commit. This merge commit combines the history of <code>main</code> and <code>week_02</code>. The structure will then look like this:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb27"><pre class="sourceCode txt code-with-copy"><code class="sourceCode default"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>o ––––– o (d8i9j0k) ––––––––––––––––––––––––––– o (m1n2o3p) –––– * main</span>
-<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a> \                                             /</span>
-<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>  o (a3tf65i) ––––– o (b4g5h6i) ––––– o (c7h8i9j) –––– week_02</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Here, <code>m1n2o3p</code> is the merge commit. It has two parents: the latest commit on <code>main</code>, namely <code>d8i9j0k</code>, and the latest commit on <code>week_02</code>, namely <code>c7h8i9j</code>. This is why the diagram shows the two branches joining together. After the merge, <code>main</code> contains both sets of changes: the style changes from <code>custom.scss</code> and the week 02 summary from <code>lectures/week_02/summary_02.qmd</code>. If I no longer need the <code>week_02</code> branch, I can delete it:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb28"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co"># delete the week_02 branch</span></span>
-<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> branch <span class="at">-d</span> week_02</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>After deleting the branch pointer, the commits are not deleted. They remain part of the history of <code>main</code> through the merge commit. The final structure is:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb29"><pre class="sourceCode txt code-with-copy"><code class="sourceCode default"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>o ––––– o (d8i9j0k) ––––––––––––––––––––––––––– o (m1n2o3p) –––– * main</span>
-<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a> \                                             /</span>
-<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>  o (a3tf65i) ––––– o (b4g5h6i) ––––– o (c7h8i9j)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>That was quite a bit of Git!</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="../../assets/images/merge.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%"></p>
-</figure>
-</div>
-</section>
-</section>
-<section id="self-study" class="level2">
-<h2 class="anchored" data-anchor-id="self-study">2. Self-Study</h2>
-<section id="additional-git-commands" class="level3">
-<h3 class="anchored" data-anchor-id="additional-git-commands">2.1. Additional Git Commands</h3>
-<p>Here are some additional Git commands that can be useful when working with Git:</p>
-<table class="caption-top table">
-<colgroup>
-<col style="width: 50%">
-<col style="width: 50%">
-</colgroup>
-<thead>
-<tr class="header">
-<th>Command</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><code>git diff --staged</code></td>
-<td>Show the changes that are staged for the next commit</td>
-</tr>
-<tr class="even">
-<td><code>git log --oneline</code></td>
-<td>Show the commit history in a compact format</td>
-</tr>
-<tr class="odd">
-<td><code>git log --graph</code></td>
-<td>Show the commit history as a graph</td>
-</tr>
-<tr class="even">
-<td><code>git reset &lt;filename&gt;</code></td>
-<td>Unstage a file (remove it from the staging area)</td>
-</tr>
-<tr class="odd">
-<td><code>git restore &lt;filename&gt;</code></td>
-<td>Discard changes to a file in the working directory</td>
-</tr>
-<tr class="even">
-<td><code>git restore --source=&lt;commit&gt; &lt;filename&gt;</code></td>
-<td>Restore a file to the version in a specific commit</td>
-</tr>
-<tr class="odd">
-<td><code>git branch</code></td>
-<td>List all branches in the repository</td>
-</tr>
-</tbody>
-</table>
-</section>
-<section id="the-anatomy-of-a-git-command" class="level3">
-<h3 class="anchored" data-anchor-id="the-anatomy-of-a-git-command">2.2. The Anatomy of a Git Command</h3>
-<p>At first, I found Git commands to be quite cryptic. However, I have come to understand that they are actually quite intuitive once you understand the underlying structure:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb30"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> <span class="op">&lt;</span>command<span class="op">&gt;</span> <span class="pp">[</span><span class="ss">options/flags</span><span class="pp">]</span> <span class="pp">[</span><span class="ss">arguments</span><span class="pp">]</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<ul>
-<li><code>git</code> is the name of the version control system we are using.</li>
-<li><code>&lt;command&gt;</code> is the specific action we want to perform (e.g., <code>add</code>, <code>commit</code>, <code>merge</code>, etc.).</li>
-<li><code>[options/flags]</code> are additional parameters that modify the behavior of the command (e.g., <code>-m</code> for commit messages, <code>--staged</code> for showing staged changes, etc.).</li>
-<li><code>[arguments]</code> are the specific files, branches, or commits that the command operates on (e.g., <code>main.py</code>, <code>week_02</code>, <code>a3tf65i</code>, etc.).</li>
-</ul>
-<p>Importantly, we can always get help on any Git command by using the <code>-h</code> or <code>--help</code> flag:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb31"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> <span class="op">&lt;</span>command<span class="op">&gt;</span> -h</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>I find <code>git &lt;command&gt; --help</code> to be more informative than <code>git &lt;command&gt; -h</code>, but both work.</p>
-</section>
-<section id="detached-head-state" class="level3">
-<h3 class="anchored" data-anchor-id="detached-head-state">2.3. Detached HEAD State</h3>
-<p>When we check out a specific commit (instead of a branch), we enter what is called a “detached HEAD” state. This means that we are not on any branch, but rather on a specific commit. In this state, if we make changes and commit them, those commits will not be part of any branch and can be easily lost if we switch to another branch. Therefore, it is generally not recommended to work in a detached HEAD state unless you know what you are doing.</p>
+<p>The purpose of this second lecture is to introduce the concept of version control and the tools that are commonly used for it, namely Git and GitHub. The lecture, originally crafted by Dr.&nbsp;Franziska Bender, and Dr.&nbsp;Aurélien Sallin, covers the following topics: - what is version control - how to use Git for version control - how to use GitHub for collaboration</p>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->
