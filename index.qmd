@@ -1,5 +1,5 @@
 ---
-title: "Introduction to Programming"
+# title: "Introduction to Programming"
 page-layout: full
 toc: false
 ---
@@ -21,17 +21,22 @@ Yvan Richard · Lectures & Summaries
 Each week's summary covers the key concepts from that week's lecture.
 
 <div class="lecture-grid">
-
 <a class="lecture-card" href="lectures/week_01/summary_01.html">
-<div class="week-label">Week 01</div>
-<div class="week-title">Getting Started</div>
-<div class="week-topics">The terminal · IDEs · Python &amp; environments · uv</div>
+<span class="week-label">Week 01</span>
+<span class="week-title">Getting Started</span>
+<span class="week-topics">The terminal · IDEs · Python &amp; environments · uv</span>
 </a>
-
+<a class="lecture-card" href="lectures/week_02/summary_02.html">
+<span class="week-label">Week 02</span>
+<span class="week-title">Introduction to Git</span>
+<span class="week-topics">Version control · Git · GitHub</span>
+</a>
 </div>
 
 ---
 
-::: {style="font-size: 0.8rem; color: #a0aec0; margin-top: 2rem;"}
-Course material by Yvan Richard, based on lectures by Dr. Franziska Bender and Dr. Aurélien Sallin.
+::: {style="font-size: 1rem; color: #595959; margin-top: 2rem;"}
+© 2026 Yvan Richard
+
+*Based on lectures by Dr. Franziska Bender and Dr. Aurélien Sallin.*
 :::

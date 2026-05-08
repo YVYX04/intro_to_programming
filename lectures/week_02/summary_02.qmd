@@ -1,0 +1,14 @@
+---
+title: "Introduction to Git"
+author:
+  - "Yvan Richard"
+date: today
+jupyter: intro-prog
+---
+
+## Foreword
+
+The purpose of this second lecture is to introduce the concept of version control and the tools that are commonly used for it, namely Git and GitHub. The lecture, originally crafted by Dr. Franziska Bender, and Dr. Aurélien Sallin, covers the following topics:
+- what is version control
+- how to use Git for version control
+- how to use GitHub for collaboration

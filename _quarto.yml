@@ -3,8 +3,10 @@ project:
   output-dir: docs
 
 website:
-  title: "Introduction to Programming"
+  # title: "Introduction to Programming"
   navbar:
+    background: "#1a365d"
+    foreground: white
     left:
       - href: index.qmd
         text: Home

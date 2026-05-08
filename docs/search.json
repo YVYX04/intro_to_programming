@@ -46,6 +46,20 @@
     "href": "index.html#lecture-notes",
     "title": "Introduction to Programming",
     "section": "Lecture Notes",
-    "text": "Lecture Notes\nEach week’s summary covers the key concepts from that week’s lecture.\n\n\n\nWeek 01\n\n\nGetting Started\n\n\nThe terminal · IDEs · Python & environments · uv\n\n\n\n\n\nCourse material by Yvan Richard, based on lectures by Dr. Franziska Bender and Dr. Aurélien Sallin."
+    "text": "Lecture Notes\nEach week’s summary covers the key concepts from that week’s lecture.\n\n Week 01 Getting Started The terminal · IDEs · Python & environments · uv   Week 02 Introduction to Git Version control · Git · GitHub \n\n\n\n© 2026 Yvan Richard\nBased on lectures by Dr. Franziska Bender and Dr. Aurélien Sallin."
+  },
+  {
+    "objectID": "lectures/week_02/summary_02.html",
+    "href": "lectures/week_02/summary_02.html",
+    "title": "Introduction to Git",
+    "section": "",
+    "text": "The purpose of this second lecture is to introduce the concept of version control and the tools that are commonly used for it, namely Git and GitHub. The lecture, originally crafted by Dr. Franziska Bender, and Dr. Aurélien Sallin, covers the following topics: - what is version control - how to use Git for version control - how to use GitHub for collaboration"
+  },
+  {
+    "objectID": "lectures/week_02/summary_02.html#foreword",
+    "href": "lectures/week_02/summary_02.html#foreword",
+    "title": "Introduction to Git",
+    "section": "",
+    "text": "The purpose of this second lecture is to introduce the concept of version control and the tools that are commonly used for it, namely Git and GitHub. The lecture, originally crafted by Dr. Franziska Bender, and Dr. Aurélien Sallin, covers the following topics: - what is version control - how to use Git for version control - how to use GitHub for collaboration"
   }
 ]

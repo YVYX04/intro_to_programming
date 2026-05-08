@@ -1,0 +1,12 @@
+{
+  "hash": "5e2717559458377b2b7b06acb0813101",
+  "result": {
+    "engine": "jupyter",
+    "markdown": "---\ntitle: \"Introduction to Git\"\nauthor:\n  - \"Yvan Richard\"\ndate: today\njupyter: intro-prog\n---\n\n## Foreword\n\nThe purpose of this second lecture is to introduce the concept of version control and the tools that are commonly used for it, namely Git and GitHub. The lecture, originally crafted by Dr. Franziska Bender, and Dr. Aurélien Sallin, covers the following topics:\n- what is version control\n- how to use Git for version control\n- how to use GitHub for collaboration\n\n",
+    "supporting": [
+      "summary_02_files"
+    ],
+    "filters": [],
+    "includes": {}
+  }
+}
