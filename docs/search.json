@@ -1,5 +1,33 @@
 [
   {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Introduction to Programming",
+    "section": "",
+    "text": "University of St. Gallen — Spring 2026\n\n\nYvan Richard · Lectures & Summaries"
+  },
+  {
+    "objectID": "index.html#lecture-notes",
+    "href": "index.html#lecture-notes",
+    "title": "Introduction to Programming",
+    "section": "Lecture Notes",
+    "text": "Lecture Notes\nEach week’s summary covers the key concepts from that week’s lecture.\n\n Week 01 Getting Started The terminal · IDEs · Python & environments · uv   Week 02 Introduction to Git Version control · Git · GitHub \n\n\n\n© 2026 Yvan Richard\nBased on lectures by Dr. Franziska Bender and Dr. Aurélien Sallin."
+  },
+  {
+    "objectID": "lectures/week_02/summary_02.html",
+    "href": "lectures/week_02/summary_02.html",
+    "title": "Introduction to Git",
+    "section": "",
+    "text": "The purpose of this second lecture is to introduce the concept of version control and the tools that are commonly used for it, namely Git and GitHub. The lecture, originally crafted by Dr. Franziska Bender, and Dr. Aurélien Sallin, covers the following topics: - what is version control - how to use Git for version control - how to use GitHub for collaboration"
+  },
+  {
+    "objectID": "lectures/week_02/summary_02.html#foreword",
+    "href": "lectures/week_02/summary_02.html#foreword",
+    "title": "Introduction to Git",
+    "section": "",
+    "text": "The purpose of this second lecture is to introduce the concept of version control and the tools that are commonly used for it, namely Git and GitHub. The lecture, originally crafted by Dr. Franziska Bender, and Dr. Aurélien Sallin, covers the following topics: - what is version control - how to use Git for version control - how to use GitHub for collaboration"
+  },
+  {
     "objectID": "lectures/week_01/summary_01.html",
     "href": "lectures/week_01/summary_01.html",
     "title": "Getting Started",
@@ -33,33 +61,5 @@
     "title": "Getting Started",
     "section": "3. Python and Environments",
     "text": "3. Python and Environments\n\n3.1. Python\nPython is a high-level, interpreted programming language that is widely used in data science, machine learning, and web development. It is known for its simplicity and readability, making it a great choice for beginners. Python also has a large range of libraries. The most popular ones for data science are:\n\n\n\nLibrary\nDescription\n\n\n\n\nNumPy\nA library for numerical computing\n\n\nPandas\nA library for data manipulation and analysis\n\n\nMatplotlib\nA library for data visualization\n\n\nScikit-learn\nA library for machine learning\n\n\nTensorFlow\nA library for deep learning\n\n\nPyTorch\nAnother library for deep learning\n\n\n\nThe difference between an interpreted and a compiled language is that an interpreted language is executed line by line, while a compiled language is translated into machine code before execution. Python is an interpreted language, which means that it is executed by the Python interpreter. To illustrate the simplicity of Python, here is how you can print “Hello, World!” in Python:\nprint(\"Hello, World!\")\nand here is how we could do the same in C++ (a compiled language):\n#include &lt;iostream&gt;\nint main()\n{\n    std::cout &lt;&lt; \"Hello, World!\" &lt;&lt; std::endl;\n    return 0;\n}\nHowever, the disadvantage of interpreted languages is that they can be slower than compiled languages, especially for computationally intensive tasks. For instance, in quantitative finance, Python is not used for production code that requires high performance, but rather for prototyping and data analysis. The actual production code is predominantly written in C++. Why is C++ faster than Python? Because C++ is a compiled language, it is translated into machine code that can be executed directly by the Central Processing Unit (CPU).\n\n\n\n\n\n\n\n3.2. The Dependency Problem\nWhen working on a project, we often need to use external libraries (e.g. the ones mentioned above). These libraries have their own dependencies, which can lead to conflicts and issues when trying to run the code on different machines or environments. This is known as the dependency problem.\nFor instance, if we have a project that requires Pandas version 1.0 and another project that requires Pandas version 2.0, we cannot have both versions installed at the same time without causing conflicts!\nThe solution to this problem is to use virtual environments. A virtual environment is an isolated environment that allows us to install specific versions of libraries and their dependencies without affecting the global Python installation. This way, we can have multiple projects with different dependencies without conflicts.\nA popular tool for managing Python packages is uv.\n\n\n3.3. uv\nuv is a tool for managing Python packages and virtual environments. It allows us to create and manage virtual environments, install packages, and manage dependencies. It is a modern alternative to tools like pip and virtualenv.\nTo get started in a project with uv, we can run the following commands:\n# init a new project with its own virtual environment\nuv init my_project\ncd my_project\n\n# install a package (e.g. pandas)\nuv add pandas\n\n# run a Python script (e.g. main.py)\nuv run python main.py\nuv will automatically create a virtual environment for the project and install the specified packages. It also creates a pyproject.toml file that contains the project metadata and dependencies, which can be easily shared with others. Importantly, the file uv.lock is generated to ensure that the exact versions of the dependencies are used when the project is run on different machines or environments, thus avoiding the dependency problem."
-  },
-  {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Introduction to Programming",
-    "section": "",
-    "text": "University of St. Gallen — Spring 2026\n\n\nYvan Richard · Lectures & Summaries"
-  },
-  {
-    "objectID": "index.html#lecture-notes",
-    "href": "index.html#lecture-notes",
-    "title": "Introduction to Programming",
-    "section": "Lecture Notes",
-    "text": "Lecture Notes\nEach week’s summary covers the key concepts from that week’s lecture.\n\n Week 01 Getting Started The terminal · IDEs · Python & environments · uv   Week 02 Introduction to Git Version control · Git · GitHub \n\n\n\n© 2026 Yvan Richard\nBased on lectures by Dr. Franziska Bender and Dr. Aurélien Sallin."
-  },
-  {
-    "objectID": "lectures/week_02/summary_02.html",
-    "href": "lectures/week_02/summary_02.html",
-    "title": "Introduction to Git",
-    "section": "",
-    "text": "The purpose of this second lecture is to introduce the concept of version control and the tools that are commonly used for it, namely Git and GitHub. The lecture, originally crafted by Dr. Franziska Bender, and Dr. Aurélien Sallin, covers the following topics: - what is version control - how to use Git for version control - how to use GitHub for collaboration"
-  },
-  {
-    "objectID": "lectures/week_02/summary_02.html#foreword",
-    "href": "lectures/week_02/summary_02.html#foreword",
-    "title": "Introduction to Git",
-    "section": "",
-    "text": "The purpose of this second lecture is to introduce the concept of version control and the tools that are commonly used for it, namely Git and GitHub. The lecture, originally crafted by Dr. Franziska Bender, and Dr. Aurélien Sallin, covers the following topics: - what is version control - how to use Git for version control - how to use GitHub for collaboration"
   }
 ]
