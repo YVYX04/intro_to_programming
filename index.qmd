@@ -31,6 +31,11 @@ Each week's summary covers the key concepts from that week's lecture.
 <span class="week-title">Introduction to Git</span>
 <span class="week-topics">Version control · Git · GitHub</span>
 </a>
+<a class="lecture-card" href="lectures/week_03/summary_03.html">
+<span class="week-label">Week 03</span>
+<span class="week-title">Git and GitHub for Collaboration</span>
+<span class="week-topics">Remotes · Branches · Pull requests</span>
+</a>
 </div>
 
 ---

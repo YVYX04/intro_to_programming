@@ -1,0 +1,173 @@
+---
+title: "Git and GitHub for Collaboration"
+author:
+  - "Yvan Richard"
+date: today
+jupyter: intro-prog
+---
+
+## Foreword
+
+The purpose of this third lecture, originally crafted by Dr. Franziska Bender, and Dr. Aurélien Sallin, is to develop further some Git concepts and learn the basics of GitHub
+to collaborate on projects (it is also useful for personal project management and version control).
+
+
+## 1. Remotes
+
+The main reasons to use GitHub are:
+
+- to collaborate with others on projects
+- to showcase our work (e.g., for job applications)
+- to back up our work online
+
+### 1.1. What is a remote?
+
+A remote is a version of your repository that is hosted on the internet or another network. It allows you to share your work with others and collaborate on projects. The most common remote hosting service is GitHub, but there are others like GitLab and Bitbucket.
+
+### 1.2. Working with remotes
+
+#### Basics
+
+Usually, the main remote is called `origin`. When you clone a repository, Git automatically sets up a remote called `origin` that points to the repository you cloned from. You can see your remotes with the command:
+
+```bash
+git remote -v
+```
+
+and the output is the following (I just ran `git remote -v`):
+
+```bash
+origin  https://github.com/YVYX04/intro_to_programming.git (fetch)
+origin  https://github.com/YVYX04/intro_to_programming.git (push)
+```
+
+Importantly, git distinguishes between fetching and pushing. Fetching is the process of downloading commits, files, and refs from a remote repository into your local repository. Pushing is the process of uploading your commits to a remote repository.
+
+> **The difference between `git pull` and `git fetch`**: `git pull` is a combination of `git fetch` followed by `git merge`. It fetches the changes from the remote repository and then merges them into your current branch. On the other hand, `git fetch` only downloads the changes from the remote repository but does not merge them into your current branch. This allows you to review the changes before merging them!
+
+#### Adding a remote
+
+To add a remote, you can use the command:
+
+```bash
+git remote add origin <URL>
+```
+
+This is what we do when we want to push our local repository to GitHub for the first time.
+To get the URL of your GitHub repository, you first need to create a new repository on GitHub. Then, you can copy the URL of the repository (either HTTPS or SSH) and use it in the command above.
+
+#### Push, Pull, (Legs)
+
+Pull and push are the two main operations for synchronizing your local repository with a remote repository. Obviously,
+legs is a (bad) joke but those who know, know.
+
+Anyways, to pull changes from a remote repository, you can use the command:
+
+```bash
+git pull origin <branch-name>
+```
+
+The effect of this command is to fetch the changes from the remote repository and merge them into your current branch. If there are any conflicts between your local changes and the changes from the remote repository, Git will prompt you to resolve them.
+
+To push your changes to a remote repository, you can use the command:
+```bash
+git push origin <branch-name>
+```
+
+If you are working on a new branch that does not exist on the remote repository, you can use the command:
+```bash
+git push -u origin <branch-name>
+```
+
+This command will create the branch on the remote repository and set it as the upstream branch for your local branch. This means that you can use `git pull` and `git push` without specifying the remote and branch name in the future.
+
+#### Force pushing
+
+If your teammates do not review your pull requests and you feel ignored, you should run `git push --force origin main` to force push your changes to the remote repository. (Once again, this is a joke. Please guys, do not do this unless you really want to fail that assignment).
+
+`git push --force origin main` is dangerous because it can rewrite the history of the remote main branch.
+Normally, when you push, Git checks that your local branch contains the latest commits from GitHub. If your local branch is behind, Git refuses the push because it would overwrite commits that exist remotely but not locally.
+
+For instance, in this schema:
+
+```txt
+origin/main: o (a) ––– o (b) ––– o (c)
+local/main: o (a) ––– o (b) ––– o (d)
+```
+
+In this case, you see that the local branch has a commit `d` that is not in the remote branch, and the remote branch has a commit `c` that is not in the local branch. If you try to push without force, Git will refuse because it would **overwrite** commit `c` on the remote repository. If you were to force push, the remote branch would be rewritten to match the local branch, and commit `c` would be lost:
+
+```txt
+origin/main: o (a) ––– o (b) ––– o (d)
+local/main: o (a) ––– o (b) ––– o (d)
+```
+
+and the teammate who made commit `c` will encounter a tiny surprise when running `git pull` (because at this point their
+local branch will have diverged and to fix it, without loosing commit `c`, they will have to be very careful). In such a case,
+I simply recommend to avoid that teammate until the end of the semester.
+
+
+## 2. GitHub More Advanced Features
+
+### 2.1. Pull Requests
+
+A pull request (PR) is a way to propose changes to a repository. It allows you to request that your changes be merged into the main branch of the repository. Pull requests are commonly used in collaborative projects to review and discuss changes before they are merged.
+
+In some projects, it is not even possible to push directly to the main branch if the admin has set up branch protection rules. In such cases, you **must** create a pull request to propose your changes.
+
+The typical workflow for using pull requests is as follows:
+
+1. Create a new branch for your changes.
+```bash
+git switch -c my-feature-branch
+```
+2. Make your changes and commit them.
+```bash
+git add .
+git commit -m "Add new feature"
+```
+3. Push your branch to the remote repository.
+```bash
+git push -u origin my-feature-branch
+```
+4. Go to the GitHub repository and create a pull request from your branch to the main branch.
+5. Wait for your teammates to review your pull request and provide feedback. You may need to make additional changes based on their feedback. Once your pull request is approved, it can be merged into the main branch.
+```bash
+git switch main
+git pull origin main
+git merge my-feature-branch
+git push origin main
+git branch -d my-feature-branch # delete the feature branch locally
+git push origin --delete my-feature-branch # delete the feature branch remotely
+```
+
+### 2.2. Rebasing
+
+Rebasing is a powerful Git feature that allows you to rewrite the commit history of your branch. It is often used to keep a clean and linear commit history, especially when working on a feature branch that has diverged from the main branch.
+Let us do a very simple example to understand the concept of rebasing. Suppose you have the following commit history:
+
+```txt
+origin/main: o (a) ––– o (b) ––– o (c)
+local/feature: o (a) ––– o (d) ––– o (e)
+```
+
+In this case, the `feature` branch has diverged from the `main` branch because it has commits `d` and `e` that are not in the `main` branch, and the `main` branch has commit `c` that is not in the `feature` branch.
+If you want to keep a clean commit history, you can rebase your `feature` branch onto the `main` branch. This will effectively "replay" your commits on top of the latest commits from the `main` branch. The command to do this is:
+
+```bash
+git switch feature
+git rebase main
+```
+
+After rebasing, the commit history will look like this:
+
+```txt
+origin/main: o (a) ––– o (b) ––– o (c)
+local/feature: o (a) ––– o (b) ––– o (c) ––– o (d) ––– o (e)
+```
+
+This way, the `feature` branch now includes all the latest commits from the `main` branch, and your commits `d` and `e` are now on top of the latest commits from `main`. This can make it easier to review and merge your changes later on.
+
+## 3. Conclusion
+
+Obviously, there is much more to learn about Git and GitHub, but I hope this lecture (mainly crafted by Aurélien Sallin and adapted by me) has given you a good introduction to some of the key concepts and features. I am myself still learning Git and GitHub, so if you have any questions or want to share your own tips and tricks, feel free to reach out to me!
