@@ -36,7 +36,13 @@ Each week's summary covers the key concepts from that week's lecture.
 <span class="week-title">Git and GitHub for Collaboration</span>
 <span class="week-topics">Remotes · Branches · Pull requests</span>
 </a>
+<a class="lecture-card" href="lectures/week_04/summary_04.html">
+<span class="week-label">Week 04</span>
+<span class="week-title">Introduction to Python</span>
+<span class="week-topics">Data Structures & Types · Control Flow · Functions</span>
+</a>
 </div>
+
 
 ---
 

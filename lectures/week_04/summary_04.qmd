@@ -1,0 +1,538 @@
+---
+title: "Introduction to Python"
+author:
+  - "Yvan Richard"
+date: today
+jupyter: intro-prog
+---
+
+## Foreword
+
+In this lecture, originally designed by Prof. Dr. Franziska Bender, we learn the basics of Python for economics. This is not a comprehensive introduction to Python, but rather a practical guide to get started with programming in Python for economic applications. Importantly, I do not replicate the full content of the lecture, rather I select relevant parts and extend them when I deem it
+interesting.
+
+Before we dive into the lecture, we should ensure that we have access to the relevant Python libraries. We will be using `numpy` for numerical operations, `pandas` for data manipulation, and `matplotlib` for plotting.
+
+```{python}
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+```
+
+## 1. Data Types & Structures
+
+### 1.1 Data Types
+
+In every programming language there are different data types that we can use to store and manipulate data. An important thing to remember is that Python is a dynamically typed language, which means that we do not need to declare the type of a variable when we create it. The type is inferred from the value we assign to it. In Python, some of the basic data types include:
+
+```{python}
+# integer
+x = 5
+print(f"Integer: {x}, type: {type(x)}")
+
+# float
+y = 3.14
+print(f"Float: {y}, type: {type(y)}")
+
+# string
+s = "Hello, World!"
+print(f"String: {s}, type: {type(s)}")
+
+# boolean
+b = True
+print(f"Boolean: {b}, type: {type(b)}")
+
+# NoneType
+n = None
+print(f"NoneType: {n}, type: {type(n)}")
+```
+
+And we can go from type to type:
+```{python}
+# Convert integer to float
+x_float = float(x)
+print(f"Converted Integer to Float: {x_float}, type: {type(x_float)}")
+
+# from string to integer (if possible)
+s_num = "42"
+s_num_int = int(s_num)
+print(f"Converted String to Integer: {s_num_int}, type: {type(s_num_int)}")
+```
+
+But if the conversion does not make sense, we get an error:
+```{python}
+# string a
+a = "abc"
+
+# try to convert
+try:
+    a_int = int(a)
+except ValueError as e:
+    print(f"Error: {e}")
+```
+
+### 1.2 Data Structures
+
+In this section, we cover the following data structures:
+- Lists
+- Tuples
+- Dictionaries
+- Sets
+
+#### Lists
+
+A list is an ordered collection of items that can be of different types. Lists are mutable, which means that we can change their content after they have been created. Importantly, a list should not be confused with an array, which is a more efficient data structure for numerical operations. In Python, we can create a list using square brackets `[]`:
+
+```{python}
+# a list of integers
+my_list = [1, 2, 3, 4, 5]
+print(f"List: {my_list}, type: {type(my_list)}")
+```
+
+Importantly, we can have lists of different types:
+
+```{python}
+# elements
+# ---------
+# a string
+my_string = "Hello, World!"
+
+# a number
+my_number = 42
+
+# a list
+inventory = [250, 125, 3]
+
+# the list
+# ---------
+my_mixed_list = [my_string, my_number, inventory]
+print(f"Mixed List: {my_mixed_list}, type: {type(my_mixed_list)}")
+```
+
+As you can see, a list is a very flexible (but not very efficient) data structure that can hold different types of data.
+
+**Mutability**
+
+Importantly, a list is **mutable**, which means that we can change its content after it has been created:
+
+```{python}
+# create a list
+my_list = [1, 2, 3, 4, 5]
+print(f"Original List: {my_list}")
+```
+
+Then I can change the content of the list (those familiar with pointers in C or C++ understand that an array is a contiguous block of memory, while a list is a collection of references to objects in memory.):
+
+```{python}
+# delete the first element of the list
+del_el = my_list.pop(0)
+print(f"Modified List: {my_list}, deleted element: {del_el}")
+```
+
+I can also add new elements to the list:
+```{python}
+# add a new element to the end of the list
+my_list.append(6)
+print(f"Modified List: {my_list}")
+```
+
+**Some List Methods**
+
+You can see further possible methods with the following code:
+```{python}
+# list of methods
+l = [1, 2, 3]
+list_methods = dir(l)[-10:]
+print(f"List Methods: {list_methods}")
+```
+
+For instance, we can use the `insert` method to add an element at a specific position in the list:
+
+```{python}
+# insert an element at index 1
+l.insert(1, 1.5)
+print(f"Modified List: {l}")
+```
+
+or we can use the `remove` method to remove the first occurrence of a specific value from the list:
+
+```{python}
+# remove the first occurrence of 1.5
+l.remove(1.5)
+print(f"Modified List: {l}")
+```
+
+The method `count` counts the number of occurrences of a specific value in the list:
+
+```{python}
+# count the number of occurrences of 1
+count_1 = l.count(1)
+print(f"Number of occurrences of 1: {count_1}")
+```
+
+and the method `index` returns the index of the first occurrence of a specific value in the list:
+
+```{python}
+# find the index of the first occurrence of 1
+index_1 = l.index(1)
+print(f"Index of the first occurrence of 1: {index_1}")
+```
+
+You can also use the `sort` method to sort the elements of the list in a given order (by default, in ascending order):
+
+```{python}
+# sort the list in descending order
+l.sort(reverse=True)
+print(f"Sorted List: {l}")
+```
+
+**Basic Functions on List**
+
+It is also possible to apply basic functions to a list, such as `len`, `sum`, `min`, and `max`:
+
+```{python}
+# create a list
+l = [1, 2, 3, 4, 5]
+print(f"Length: {len(l)},\n Sum: {sum(l)},\n Min: {min(l)},\n Max: {max(l)}")
+```
+
+Of course, we can also program our own functions (we talk about this later).
+
+**Indexing**
+
+We can access the elements of a list using indexing. In Python, indexing starts at 0, which means that the first element of the list is accessed with index 0, the second element with index 1, and so on:
+
+```{python}
+# create a list
+l = ['a', 'b', 'c', 'd', 'e']
+print(f"first: {l[0]}")
+```
+
+and we can also use negative indexing to access elements from the end of the list:
+```{python}
+print(f"last: {l[-1]}")
+```
+
+It is even possible to access a range of elements using slicing:
+```{python}
+# create a list
+l = ['a', 'b', 'c', 'd', 'e']
+
+# idx 0 is included, idx 3 is not included
+print(f"first three elements: {l[0:3]}")
+```
+
+
+#### Tuples
+
+A tuple is an ordered collection of items that can be of different types. Tuples are immutable, which means that we cannot change their content after they have been created. In Python, we can create a tuple using parentheses `()`:
+
+```{python}
+# a tuple of integers
+my_tuple = (1, 2, 3, 4, 5)
+print(f"Tuple: {my_tuple}, type: {type(my_tuple)}")
+```
+
+Why would we want to use a tuple instead of a list? One reason is that tuples are more memory efficient than lists, which can be important when we are working with large datasets. Another reason is that tuples can be used as keys in dictionaries, while lists cannot.
+
+We can also index tuples in the same way as lists:
+```{python}
+# create a tuple
+tup = (1, 2)
+print(f"first element: {tup[0]}")
+```
+
+Another useful technique with tuple is called **tuple unpacking**:
+
+```{python}
+user = ("yvan", 21)
+name, age = user
+print(f"name of the user: {name}\nage of the user: {age}")
+```
+
+#### Dictionaries
+
+Dictionaries in Python are unordered collections of key-value pairs. They are mutable, which means that we can change their content after they have been created. In Python, we can create a dictionary using curly braces `{}`:
+
+```{python}
+# create a dictionary
+d1 = {
+    "names": ["tom", "jerry"],
+    "species": ["cat", "mouse"]
+}
+```
+
+In this case I did not use the most trivial example of a dictionary, which would be something like `{"key1": "value1", "key2": "value2"}`, but rather a more complex example that is more relevant for economics. In this case, we have a dictionary with two keys: "names" and "species". The value associated with the key "names" is a list of two strings, while the value associated with the key "species" is a list of two strings as well.
+
+We can access the values of a dictionary using the keys:
+```{python}
+print(f"names: {d1['names']}")
+print(f"species: {d1['species']}")
+```
+
+And then we could print all the names and species in a loop (for later).
+
+**Methods on Dictionaries**
+
+Some of the most common methods on dictionaries include `keys`, `values`, and `items`:
+```{python}
+# create a dictionary
+d1 = {
+    "names": ["tom", "jerry"],
+    "species": ["cat", "mouse"]
+}
+print(f"keys: {d1.keys()}")
+print(f"values: {d1.values()}")
+print(f"items: {d1.items()}")
+```
+
+As you can see, the `items` method returns a tuple!
+So this means that we can use tuple unpacking to access the keys and values of the dictionary:
+
+```{python}
+for key, value in d1.items():
+    print(f"key: {key}, value: {value}")
+```
+
+Impportantly, dictionaries also use a different memory structure than lists, which is called a hash table. This allows for very fast access to the values of the dictionary using the keys. Let us suppose that we have the following simple dictionary:
+
+```{python}
+# create a dictionary
+d1 = {
+    "name": "yvan",  
+    "age": 21
+}
+```
+
+When we want to access the value associated with the key "name", Python computes a hash of the key "name" and uses this hash to find the corresponding value in the hash table. This is why dictionaries are very efficient for lookups, even when they contain a large number of key-value pairs.
+
+**Lifting the Hood of Dictionaries**
+
+Here is a simplified low-level representation. The exact implementation in CPython (the thing that converts Python code into executable machine code) is more sophisticated, but the core idea is the same: the key is transformed into a hash, the hash is mapped to a table position, and Python checks whether the key stored at that position matches the requested key. Below is an example.
+
+> This example is the result of my own work and is not part of the original lecture. It is meant to illustrate how dictionaries work under the hood.
+
+Dictionary written by the programmer:
+
+```{python}
+d1 = {
+    "name": "yvan",
+    "age": 21
+}
+```
+
+Then we have an internal hash-table representation, simplified.
+During lookup, we compute hashes:
+
+```txt
+hash("name")  -->  8412
+hash("age")   -->  3195
+```
+
+Then we map each hash to an index in the internal table (e.g. using the modulo operator for a table of size 8):
+
+```txt
+index("name") = 8412 % 8 = 4
+index("age")  = 3195 % 8 = 3
+```
+
+We then store the key-value pairs in the table:
+
+```txt
+index      stored key      stored value
+-----      ----------      ------------
+  0        empty           empty
+  1        empty           empty
+  2        empty           empty
+  3        "age"           21
+  4        "name"          "yvan"
+  5        empty           empty
+  6        empty           empty
+  7        empty           empty
+```
+
+So when we want to access `d1["name"]`, Python does the following:
+
+1. Python computes `hash("name")`
+
+```txt
+hash("name") = 8412
+```
+
+2. Python maps the hash to a table index
+
+```txt
+8412 % 8 = 4
+```
+
+3. Python jumps directly to index 4
+
+```txt
+index 4 contains: ("name", "yvan")
+```
+
+4. Python checks whether the stored key is equal to the requested key
+
+```txt
+stored key:    "name"
+requested key: "name"
+match: yes
+```
+
+5. Python returns the associated value
+```txt
+"yvan"
+```
+
+If two keys are mapped to the same index, we get a **collision**. Python then checks another position according to a deterministic probing rule. A simplified collision example would look like this:
+
+Suppose:
+
+```txt
+hash("name") = 8412
+hash("city") = 1548
+```
+
+and:
+
+```txt
+8412 % 8 = 4
+1548 % 8 = 4
+```
+
+At this point, we must determine a probing rule to resolve the collision. In python, we can even look the hash ourselves:
+
+```{python}
+# dicttionary
+d = {
+    "name": "yvan",
+    "city": "evionnaz"
+}
+
+# compute hashes
+hash_name = hash("name")
+print(f"hash('name'): {hash_name}")
+```
+
+but to do the whole process, we simply do:
+
+```{python}
+d.get("name")
+```
+
+**Adding Pair & Nested Dictionaries**
+
+To add a new key-value pair to the dictionary, we can simply assign a value to a new key:
+
+```{python}
+# create a dictionary
+d1 = {
+    "name": "yvan",
+    "age": 21
+}
+
+# add a new key-value pair
+d1["city"] = "evionnaz"
+print(f"Updated Dictionary: {d1}")
+```
+
+Another interesting feature of dictionaries is that they can be nested, which means that the value associated with a key can itself be another dictionary:
+
+```{python}
+# create a nested dictionary
+d2 = {
+    "name": "yvan",
+    "age": 21,
+    "address": {
+        "street": "123 Main St",
+        "city": "evionnaz",
+        "country": "switzerland"
+    }
+}
+print(f"{d2['name']}'s address is : {d2['address']}")
+```
+
+## 2. Control Flow
+
+
+<div style="border-left: 4px solid #ff5e4c; padding: 0.75rem 1rem; background: #ffe1e1; border-radius: 0.35rem;">
+<strong>Work in progress 🚧</strong><br>
+<span style="color: #555;">This section is currently under construction and will be completed later.</span>
+</div>
+
+
+## 3. Functions
+
+
+<div style="border-left: 4px solid #ff5e4c; padding: 0.75rem 1rem; background: #ffe1e1; border-radius: 0.35rem;">
+<strong>Work in progress 🚧</strong><br>
+<span style="color: #555;">This section is currently under construction and will be completed later.</span>
+</div>
+<br>
+
+The basic idea of a function is that it is a reusable block of code that performs a specific task. Functions allow us to break down our code into smaller, more manageable pieces, and they also allow us to avoid repetition by reusing the same code multiple times. Here is a simple example of how to define and use a function in Python:
+
+First, we define the function using the `def` keyword, followed by the name of the function and parentheses that may contain parameters:
+
+```{python}
+def serve_drink(name: str="yvan", age: int=21) -> str:
+    if age < 18:
+        return f"Sorry {name}, you are not old enough to be served alcohol."
+    else:
+        return f"Here is your drink, {name}!"
+```
+
+Then we can call the function with different arguments:
+
+```{python}
+print(serve_drink("alice", 17))
+print(serve_drink(age=25, name="bob"))
+```
+
+#### Lambda Functions
+
+Lambda functions are anonymous (anonymous because they remain unnamed) functions that are defined using the `lambda` keyword. They are often used for short, simple functions that are not worth defining with a full `def` statement. Here is an example of a lambda function that adds two numbers:
+
+```{python}
+add = lambda x, y: x + y
+print(add(3, 5))
+```
+
+Lambda functions are very useful when we want to pass a simple function as an argument to another function, such as the `map` function:
+
+```{python}
+numbers = [1, 2, 3, 4, 5]
+squared = list(map(lambda x: x**2, numbers))
+print(squared)
+```
+
+But we can also use a regular function for the same purpose:
+
+```{python}
+def square(x):
+    return x**2
+
+squared = list(map(square, numbers))
+print(squared)
+```
+
+Let us do a final strange example called **currying**; it is a technique that allows us to transform a function that takes multiple arguments into a sequence of functions that each take a single argument. Here is an example of how to curry a function in Python:
+
+```python
+def divide(x: int, y : int) -> float:
+    return x / y
+
+def curried_divide(y: int) -> callable:
+    return lambda x: divide(x, y)
+
+# create a curried function
+mystery_f = curried_divide(2)
+
+# use the curried function
+print(mystery_f(10))
+```
+
+Guess the output ;)
+
+> *Example source: https://en.wikipedia.org/wiki/Anonymous_function*
+
