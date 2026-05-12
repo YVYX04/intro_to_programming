@@ -1,0 +1,418 @@
+---
+title: "Object Oriented Programming"
+author:
+  - "Yvan Richard"
+date: today
+jupyter: intro-prog
+---
+
+## Foreword
+
+In programming, we typically distinguish between different **programming paradigms**. A programming paradigm is a style or way of programming that provides a particular approach to solving problems. One of the well-known paradigms is **object-oriented programming (OOP)**, which organizes code around objects that represent real-world entities.
+This lecture is completely the result of my own work and is not part of the original lecture series by Prof. Dr. Franziska Bender and Prof. Dr. Aurélien Sallin.
+
+## 1. Classes
+
+### 1.1. Definition & Terminology
+
+Secretly, we have already been using classes without realizing it. For example, when we create a list in Python, we are actually creating an instance of the built-in `list` class. Similarly, when we create a string, we are creating an instance of the `str` class. These classes define the behavior and properties of the objects we create.
+
+```{python}
+l = [1, 2, 3]  # This is an instance of the list class
+s = "Hello"     # This is an instance of the str class
+```
+
+and we can check their types:
+
+```{python}
+print(type(l))  # Output: <class 'list'>
+print(type(s))  # Output: <class 'str'>
+```
+
+In this case, `list` is the class, and `l` is an instance of that class (an object). The class defines the structure and behavior of the objects, while the instance is a specific object created from that class.
+I provide a quick glossary of OOP terms here for reference (they have not been defined yet):
+
+| Term            | Definition |
+|-----------------|------------|
+| Class           | blueprint |
+| Object          | concrete thing created from a class |
+| Instance        | object created from a specific class |
+| Attribute       | data stored in an object |
+| Method          | function attached to a class/object |
+| self            | current instance |
+| __init__        | constructor |
+| Instantiation   | creating an object from a class |
+| Encapsulation   | bundling data and behavior |
+| Inheritance     | reusing/extending another class |
+| Polymorphism    | same interface, different behavior |
+| Abstraction     | hiding internal complexity |
+
+### 1.2. Creating a Class
+
+In this section, we will learn how to create our own classes in Python. A class is defined using the `class` keyword, followed by the name of the class and a colon. Typically, class names are written in CamelCase (e.g., `Human`, `Car`, `Animal`). In this example, I will use a simple `Human` class to illustrate the concepts.
+
+When creating a class, we often first draw a UML (Unified Modeling Language) class diagram to visualize the structure of the class, its **attributes** (data stored in an object), and its **methods** (functions attached to a class/object). This helps us plan our class design before writing any code.
+
+```txt
++----------------------+
+|        Human         |
++----------------------+
+| - name: str          |
+| - age: int           |
+| - energy_lvl: float  |
+| - alive: bool        |
++----------------------+
+| + sleep(): None      |
+| + eat(): None        |
+| + ageing(): None     |
+| + die(): None        |
+| + get_info(): dict   |
++----------------------+
+```
+
+In our `Human` class, we have four attributes: `name`, `age`, `energy_lvl`, and `alive`. We also have six methods: `sleep()`, `eat()`, `run()`, `ageing()`, `die()`, and `get_info()`. The attributes represent the state of a human, while the methods represent the behavior of a human (we also have a type in case the method returns a value, e.g., `get_info()` returns a dictionary). The `+` sign indicates that the method is **public**, meaning it can be accessed from outside the class! (Contrary to
+other programming languages such as C++, Python does not have strict access modifiers like `private` or `protected`, but we can use naming conventions to indicate the intended level of access.)
+
+Now that we have our class diagram, we can start writing the code for our `Human` class. We will define the class and its attributes, and then implement the methods to manipulate those attributes.
+
+```{python}
+class Human:
+    def __init__(self, name: str, age: int):
+        self.name = name
+        self.age = age
+        self.energy_lvl = 100.0
+        self.alive = True
+
+    def die(self):
+        self.alive = False
+        self.energy_lvl = 0.0
+        print(f"{self.name} has died.")
+
+    def sleep(self):
+        # a dead human cannot sleep
+        if self.alive:
+            self.energy_lvl = 100.0
+        
+    def eat(self, food_kg: float):
+        # a dead human cannot eat
+        if self.alive:
+            self.energy_lvl += food_kg * 10.0
+
+            # we cannot have more than 100% energy!
+            if self.energy_lvl > 100.0:
+                self.energy_lvl = 100.0
+
+    def run(self, distance_km: float):
+        # a dead human cannot run
+        if self.alive:
+            self.energy_lvl -= distance_km * 5.0
+
+            # if energy drops to 0 or below, the human dies
+            if self.energy_lvl <= 0.0:
+                self.die()
+
+    def ageing(self):
+        # a dead human cannot age
+        if self.alive:
+            self.age += 1
+            if self.age >= 80:
+                self.die()
+
+    def get_info(self) -> dict:
+        return {
+            "name": self.name,
+            "age": self.age,
+            "energy_lvl": self.energy_lvl,
+            "alive": self.alive
+        }
+```
+
+Now, we must explain the code above. The `__init__` method is a special method called the **constructor**. It is automatically called when we create a new instance of the class. The `self` parameter refers to the current instance of the class, and it allows us to access and modify the **attributes** of that instance (it is truly a *reference* to the instance itself). In our constructor, we initialize the `name`, `age`, `energy_lvl`, and `alive` attributes! (We could spend crazy time on the constructor, but I will not do it here for the sake of brevity. A destructor also exists, but it is not commonly used in Python, so I will not cover it here.) Basically, remember that Python does a lot of work for us behind the scenes when it comes to memory management and object lifecycle, so we don't have to worry about it most of the time :)
+
+Now let us create an instance of our `Human` class and see how it works:
+
+```{python}
+# create an instance of the Human class
+y = Human(name="yvan", age=21)
+
+# get info about the human
+print(y.get_info())
+```
+
+That is how we create an instance of the `Human` class and call a method on that instance to get information about it. We can also call other methods to manipulate the state of the human:
+
+```{python}
+# yvan goes for a run
+y.run(5.0)
+
+# get info about yvan after the run
+print(y.get_info())
+```
+
+After running for 5 kilometers, yvan's energy level decreases by 25 (5 km * 5 energy/km), so his energy level should now be 75.0. We can see this reflected in the output of `get_info()`. If we keep running or ageing yvan, we can eventually cause him to die, which will set his `alive` attribute to `False` and his `energy_lvl` to `0.0`. This illustrates how the methods of our class can manipulate the state of the object (the instance) over time. Let's make yvan die now:
+
+```{python}
+# yvan goes for the UTMB (ultra-trail du mont-blanc, 172 km)
+y.run(172.0)
+```
+
+A good proxy of what would happen in real life probably (°–°).
+
+#### Defaults of the Class
+
+An important thing that I did not implemented for the sake of simplicity is error handling. For example, we could add checks to ensure that the `food_kg` parameter in the `eat()` method is a positive number, or that the `distance_km` parameter in the `run()` method is not negative. This would make our class more robust and prevent it from entering an invalid state.
+
+Another thing that we could add is getters and setters for our attributes. This would allow us to control how the attributes are accessed and modified, and we could add additional logic to ensure that the attributes are always in a valid state. For example, we could add a setter for the `age` attribute that prevents it from being set to a negative number. For instance:
+
+```python
+class Human:
+    # ... (other methods remain unchanged)
+    def get_age(self):
+        return self.age
+
+    def set_age(self, value):
+        if value < 0:
+            raise ValueError("Age cannot be negative")
+        self.age = value
+```
+
+### 1.3. Classes can Interact with Each Other
+
+In this simple example, I demonstrate how two classes can interact with each other.
+I will create a class named `Student` and a class named `Course`. You will note that this
+time, I 
+
+```txt
++----------------------+
+|       Student        |
++----------------------+
+| - name: str          |
+| - grade: float       |
++----------------------+
+| + get_grade(): float |
++----------------------+
+```
+
+and the `Course` class:
+
+```txt
++---------------------------------------+
+|               Course                  |
++---------------------------------------+
+| - name: str                           |
+| - students: list                      |
+| - max_students: int                   |
++---------------------------------------+
+| + add_student(student: Student): bool |
+| + get_average_grade(): float          |
++---------------------------------------+
+```
+
+Now the UML (Unified Modeling Language) of the `Student` class is very simple, it has two attributes: `name` and `grade`, and one method: `get_grade()`. The `Course` class has three attributes: `name`, `students`, and `max_students`, and two methods: `add_student()` and `get_average_grade()`. The `add_student()` method takes a `Student` object as a parameter and adds it to the course if there is still room (i.e., if the number of students is less than `max_students`). The `get_average_grade()` method calculates the average grade of all the students in the course. Here is the implementation of `Student`:
+
+```{python}
+class Student:
+    def __init__(self, name: str, grade: float):
+        self.name = name
+        self.grade = grade
+    
+    def get_grade(self):
+        return self.grade
+```
+
+And the implementation of `Course`:
+
+```{python}
+class Course:
+    def __init__(self, name: str, max_students: int):
+        self.name = name
+        self.max_students = max_students
+        self.students = list()
+
+    def add_student(self, student: Student) -> bool:
+        if len(self.students) < self.max_students:
+            self.students.append(student)
+            return True
+        else:
+            Warning(f"Cannot add student {student} to course {self.name}. The course is full.\n")
+            return False
+
+    def get_avg_grade(self) -> float:
+        n = len(self.students)
+        if n > 0:
+            total = 0
+            for s in self.students:
+                total += s.get_grade()
+            return total / n
+        else:
+            Warning(f"No student in course {self.name}. Returned value is -1.0.\n")
+            return -1.0
+```
+
+Now that my two classes are defined, let us make a very simple example:
+
+```{python}
+# create two students
+s1 = Student("tom", 4.50)
+s2 = Student("lea", 5.50)
+new_students = [s1, s2]
+
+# create a course and add students
+c1 = Course("intro. to prog.", 2)
+for s in new_students:
+    c1.add_student(s)
+
+# compute avg GPA
+print(f"Average GPA of the students in {c1.name}: {c1.get_avg_grade()}")
+```
+
+
+## 2. Inheritance & Polymorphism
+
+In OOP, we can create new classes that are based on existing classes. This is called **inheritance**. The new class (called the child class or subclass) inherits the attributes and methods of the existing class (called the parent class or superclass), and can also have its own attributes and methods. This allows us to reuse code and create a hierarchy of classes.
+
+The canonical example of inheritance is the parent class `Animal`:
+
+```txt
++----------------------+
+|        Animal        |
++----------------------+
+| - name: str          |
+| - age: int           |
++----------------------+
+| + print_info(): dict |
+| + speak(): None      |
++----------------------+
+```
+
+which we can code as follows:
+
+```{python}
+class Animal:
+    def __init__(self, name: str, age: int):
+        self.name = name
+        self.age = age
+
+    def print_info(self) -> dict:
+        # first, print the animal's name and age
+        print(f"[[Name: {self.name}]\n[Age: {self.age}]]\n")
+
+        # return the info as a dictionary if needed
+        return {
+            "name": self.name,
+            "age": self.age
+        }
+
+    def speak(self) -> None:
+        print(f"{self.name} makes a sound.")
+```
+
+It is useful to have a parent class because every animal has a name and an age, and every animal can make some sort of sound. Therefore, having a super class `Animal` allows us to avoid code duplication and to create a common interface for all animals! Now, we can create child classes that inherit from `Animal`, such as `Dog` and `Cat` (I only show the UML of `Dog` for the sake of brevity):
+
+```txt
++----------------------+
+|        Animal        |
++----------------------+
+| - name: str          |
+| - age: int           |
++----------------------+
+| + print_info(): dict |
++----------------------+
+           ▲ 
+           |  (inherits from)
+           |
++----------------------+
+|         Dog          |
++----------------------+
+| - breed: str         |
++----------------------+
+| + speak(): None      |
++----------------------+
+```
+
+And we can implement the `Dog` class as follows:
+```{python}
+class Dog(Animal):
+    def __init__(self, name: str, age: int, breed: str):
+        # super() refers to the parent class (Animal) and allows us to call its methods
+        super().__init__(name, age)  # call the constructor of the parent class
+        self.breed = breed
+
+    def speak(self) -> None:
+        print(f"{self.name}: \"Woof!\"")
+```
+
+And I can create the `Cat` class in a similar way:
+
+```{python}
+class Cat(Animal):
+    def __init__(self, name: str, age: int, color: str):
+        super().__init__(name, age)  # call the constructor of the parent class
+        self.color = color
+
+    def speak(self) -> None:
+        print(f"{self.name}: \"Meow!\"")
+```
+
+Here we can see that both `Dog` and `Cat` classes inherit the `name` and `age` attributes, as well as the `print_info()` method from the `Animal` class. They also have their own specific attributes (`breed` for `Dog` and `color` for `Cat`). Additionally, they both *override* the `speak()` method to provide their own implementation of how they speak. This is an example of **polymorphism**, which allows us to use the same interface (the `speak()` method) to call different implementations depending on the type of the object (whether it's a `Dog` or a `Cat`).
+
+Here is an example:
+
+```{python}
+# create a dog and a cat
+d1 = Dog(name="milou", age=3, breed="golden retriever")
+c1 = Cat(name="tom", age=2, color="black")
+
+# call the speak method on both animals
+for animal in [d1, c1]:
+    # this will call the appropriate speak method based on the type of animal
+    animal.speak()  
+```
+
+With this code, we create a `Dog` named "milou" and a `Cat` named "tom". When we call the `speak()` method on each animal, it will execute the correct implementation based on whether the animal is a `Dog` or a `Cat`, demonstrating polymorphism in action!
+
+
+## 3. Decorators
+
+Let us start with a simple example of a class with a class attribute and a class method:
+
+```{python}
+class Shape:
+    # class attribute (shared by all instances)
+    GRAVITY = 9.81  
+    number_of_objects = 0
+
+    def __init__(self, name: str):
+        self.name = name
+        # increment the class attribute number_of_objects whenever a new instance is created
+        Shape.number_of_objects += 1
+
+    @classmethod
+    def get_number_of_objects(cls):
+        return cls.number_of_objects
+```
+
+In this example, `GRAVITY` and `number_of_objects` are class attributes, meaning they are **shared by all instances of the `Shape` class**. The `get_number_of_objects()` method is a class method, which means it can access and modify class attributes. We use the `@classmethod` *decorator* to indicate that this method is a class method. A decorator is a special type of function that modifies the behavior of another function or method. In this case, the `@classmethod` decorator tells Python that the method should receive the class itself as the first argument (conventionally named `cls`) instead of an instance of the class (which is conventionally named `self` for instance methods). This allows us to access and modify class attributes from within the method.
+
+Now we can create some instances of the `Shape` class and see how the class attributes and methods work:
+```{python}
+# create some shapes
+s1 = Shape("circle")
+s2 = Shape("square")
+
+# access class attributes and methods
+print(f"Gravity: {Shape.GRAVITY}")  # Accessing class attribute directly from the class
+print(f"Number of shapes: {Shape.get_number_of_objects()}")  # Accessing class method to get the number of objects
+``` 
+
+Finally, it is also worth mentioning that we can also have **static methods** in a class, which are methods that do not receive an implicit first argument (neither `self` nor `cls`). They are defined using the `@staticmethod` decorator and are typically used for utility functions that are related to the class but do not need to access any class or instance attributes. For example:
+
+```python
+class Shape:
+    # ... (other attributes and methods remain unchanged)
+    @staticmethod
+    def calculate_area(radius: float) -> float:
+        return 3.14 * radius ** 2
+```
+
+As you can see, the `calculate_area()` method does not take `self` or `cls` as a parameter, and it can be called directly from the class without needing an instance.

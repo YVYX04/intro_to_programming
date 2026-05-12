@@ -41,6 +41,11 @@ Each week's summary covers the key concepts from that week's lecture.
 <span class="week-title">Introduction to Python</span>
 <span class="week-topics">Data Structures & Types · Control Flow · Functions</span>
 </a>
+<a class="lecture-card" href="lectures/week_07/summary_07.html">
+<span class="week-label">Week 07</span>
+<span class="week-title">Object-Oriented Programming</span>
+<span class="week-topics">Classes · Inheritance · Polymorphism</span>
+</a>
 </div>
 
 
